@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -38,6 +39,10 @@ func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan() // use `for scanner.Scan()` to keep reading
 	input := scanner.Text()
+
+	re := regexp.MustCompile("[^a-zA-ZáéíóúàèìòùâêîôûãõñçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÑÇ\\s]") // Keep only letters and
+	input = re.ReplaceAllString(input, "")                                         // Replace all string matched in input
+	input = strings.ReplaceAll(input, "  ", " ")                                   // Remove double spaces
 
 	// Divide palavras do input em um array.
 
